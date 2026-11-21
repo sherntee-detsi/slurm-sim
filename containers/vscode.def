@@ -1,0 +1,12 @@
+Bootstrap: docker
+From: debian:bookworm-slim
+
+%post
+    apt-get update
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        bash ca-certificates curl gzip libstdc++6 openssh-server python3 tar
+    mkdir -p /run/sshd
+    rm -f /etc/ssh/ssh_host_ed25519_key /etc/ssh/ssh_host_ed25519_key.pub \
+        /etc/ssh/ssh_host_rsa_key /etc/ssh/ssh_host_rsa_key.pub \
+        /etc/ssh/ssh_host_ecdsa_key /etc/ssh/ssh_host_ecdsa_key.pub
+    apt-get clean
